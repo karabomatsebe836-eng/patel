@@ -47,7 +47,7 @@ export default function DentistDashboard() {
     if (!profile) return;
     const { data, error } = await supabase
       .from('appointments')
-      .select(`*, service:services(*), patient:profiles!appointments_patient_id_fkey(*)`)
+      .select(`*, service:services(*), patient:profiles!appointments_patient_id_fkey(id, full_name)`)
       .eq('dentist_id', profile.id)
       .order('appointment_date', { ascending: true });
     if (error) {
