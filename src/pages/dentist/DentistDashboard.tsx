@@ -7,6 +7,7 @@ import {
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
 import { useRouter } from '../../contexts/RouterContext';
+import { useAppointmentRealtime } from '../../hooks/useAppointmentRealtime';
 import type { Appointment, Profile, Service, DentistAvailability } from '../../lib/types';
 
 type Tab = 'overview' | 'requests' | 'availability' | 'history';
@@ -44,11 +45,15 @@ export default function DentistDashboard() {
 
   const fetchAppointments = useCallback(async () => {
     if (!profile) return;
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('appointments')
       .select(`*, service:services(*), patient:profiles!appointments_patient_id_fkey(*)`)
       .eq('dentist_id', profile.id)
       .order('appointment_date', { ascending: true });
+    if (error) {
+      console.error('Failed to load dentist appointments:', error);
+      return;
+    }
     if (data) setAppointments(data as Appointment[]);
   }, [profile]);
 
@@ -61,6 +66,8 @@ export default function DentistDashboard() {
       .order('day_of_week');
     if (data) setAvailability(data);
   }, [profile]);
+
+  const realtimeStatus = useAppointmentRealtime(profile?.id, 'dentist_id', fetchAppointments);
 
   useEffect(() => {
     if (!profile) return;
@@ -278,6 +285,17 @@ export default function DentistDashboard() {
           </div>
 
           <div className="p-4 md:p-8 max-w-4xl mx-auto">
+            <div
+              role="status"
+              aria-live="polite"
+              className={`mb-4 text-xs ${realtimeStatus === 'connected' ? 'text-green-700' : realtimeStatus === 'connecting' ? 'text-gray-500' : 'text-amber-700'}`}
+            >
+              {realtimeStatus === 'connected'
+                ? 'Live connection active; syncing every 5 seconds as backup'
+                : realtimeStatus === 'connecting'
+                  ? 'Connecting to live appointment updates…'
+                  : 'Live updates unavailable; checking for changes every 5 seconds'}
+            </div>
             {/* OVERVIEW */}
             {tab === 'overview' && (
               <div>

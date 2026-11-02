@@ -7,6 +7,7 @@ import {
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
 import { useRouter } from '../../contexts/RouterContext';
+import { useAppointmentRealtime } from '../../hooks/useAppointmentRealtime';
 import type { Appointment, Service, Profile, Notification } from '../../lib/types';
 
 const STATUS_STYLES: Record<string, { bg: string; text: string; icon: React.ReactNode }> = {
@@ -60,11 +61,15 @@ export default function PatientDashboard() {
 
   const fetchAppointments = useCallback(async () => {
     if (!profile) return;
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('appointments')
       .select(`*, service:services(*), dentist:profiles!appointments_dentist_id_fkey(*)`)
       .eq('patient_id', profile.id)
       .order('appointment_date', { ascending: false });
+    if (error) {
+      console.error('Failed to load patient appointments:', error);
+      return;
+    }
     if (data) setAppointments(data as Appointment[]);
   }, [profile]);
 
@@ -80,6 +85,12 @@ export default function PatientDashboard() {
       setUnreadCount(data.filter((n) => !n.is_read).length);
     }
   }, [profile]);
+
+  const refreshAppointmentData = useCallback(async () => {
+    await Promise.all([fetchAppointments(), fetchNotifications()]);
+  }, [fetchAppointments, fetchNotifications]);
+
+  const realtimeStatus = useAppointmentRealtime(profile?.id, 'patient_id', refreshAppointmentData);
 
   const fetchDentists = useCallback(async () => {
     setDentistsLoading(true);
@@ -325,6 +336,17 @@ export default function PatientDashboard() {
           </div>
 
           <div className="p-4 md:p-8 max-w-4xl mx-auto">
+            <div
+              role="status"
+              aria-live="polite"
+              className={`mb-4 text-xs ${realtimeStatus === 'connected' ? 'text-green-700' : realtimeStatus === 'connecting' ? 'text-gray-500' : 'text-amber-700'}`}
+            >
+              {realtimeStatus === 'connected'
+                ? 'Live connection active; syncing every 5 seconds as backup'
+                : realtimeStatus === 'connecting'
+                  ? 'Connecting to live appointment updates…'
+                  : 'Live updates unavailable; checking for changes every 5 seconds'}
+            </div>
             {/* ── OVERVIEW ── */}
             {tab === 'overview' && (
               <div>
