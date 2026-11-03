@@ -8,6 +8,7 @@ import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
 import { useRouter } from '../../contexts/RouterContext';
 import { useAppointmentRealtime } from '../../hooks/useAppointmentRealtime';
+import { useDentistAvailabilityRealtime } from '../../hooks/useDentistAvailabilityRealtime';
 import type { Appointment, Profile, Service, DentistAvailability } from '../../lib/types';
 
 type Tab = 'overview' | 'requests' | 'availability' | 'history';
@@ -68,6 +69,13 @@ export default function DentistDashboard() {
   }, [profile]);
 
   const realtimeStatus = useAppointmentRealtime(profile?.id, 'dentist_id', fetchAppointments);
+  const availabilityRealtimeStatus = useDentistAvailabilityRealtime(profile?.id, fetchAvailability);
+  const dashboardRealtimeStatus =
+    realtimeStatus === 'connected' && availabilityRealtimeStatus === 'connected'
+      ? 'connected'
+      : realtimeStatus === 'connecting' || availabilityRealtimeStatus === 'connecting'
+        ? 'connecting'
+        : 'disconnected';
 
   useEffect(() => {
     if (!profile) return;
@@ -288,11 +296,11 @@ export default function DentistDashboard() {
             <div
               role="status"
               aria-live="polite"
-              className={`mb-4 text-xs ${realtimeStatus === 'connected' ? 'text-green-700' : realtimeStatus === 'connecting' ? 'text-gray-500' : 'text-amber-700'}`}
+              className={`mb-4 text-xs ${dashboardRealtimeStatus === 'connected' ? 'text-green-700' : dashboardRealtimeStatus === 'connecting' ? 'text-gray-500' : 'text-amber-700'}`}
             >
-              {realtimeStatus === 'connected'
+              {dashboardRealtimeStatus === 'connected'
                 ? 'Live connection active; syncing every 5 seconds as backup'
-                : realtimeStatus === 'connecting'
+                : dashboardRealtimeStatus === 'connecting'
                   ? 'Connecting to live appointment updates…'
                   : 'Live updates unavailable; checking for changes every 5 seconds'}
             </div>

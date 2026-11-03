@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useRouter } from '../../contexts/RouterContext';
 import { CLINIC } from '../../lib/siteData';
 import { useAppointmentRealtime } from '../../hooks/useAppointmentRealtime';
+import { useBookingAvailabilityRealtime } from '../../hooks/useBookingAvailabilityRealtime';
 import type { Appointment, Service, Profile, Notification } from '../../lib/types';
 
 interface BookingOptometrist {
@@ -150,33 +151,52 @@ export default function PatientDashboard() {
     void fetchDentists();
   }, [profile, fetchAppointments, fetchNotifications, fetchDentists]);
 
-  useEffect(() => {
+  const fetchAvailableSlots = useCallback(async () => {
     if (!selectedDentist || !selectedDate || !selectedService) {
       setAvailableSlots([]);
       return;
     }
+
     const dayOfWeek = new Date(selectedDate + 'T00:00:00').getDay();
-    supabase
+    const { data: avail, error: availabilityError } = await supabase
       .from('dentist_availability')
       .select('*')
       .eq('dentist_id', selectedDentist.id)
       .eq('day_of_week', dayOfWeek)
       .eq('is_available', true)
-      .maybeSingle()
-      .then(async ({ data: avail }) => {
-        if (!avail) { setAvailableSlots([]); return; }
-        const slots = generateTimeSlots(avail.start_time, avail.end_time, selectedService.duration_minutes);
-        // Filter out already-booked slots
-        const { data: booked } = await supabase
-          .from('appointments')
-          .select('appointment_time')
-          .eq('dentist_id', selectedDentist.id)
-          .eq('appointment_date', selectedDate)
-          .in('status', ['pending', 'approved']);
-        const bookedTimes = new Set((booked || []).map((b) => b.appointment_time.slice(0, 5)));
-        setAvailableSlots(slots.filter((s) => !bookedTimes.has(s)));
-      });
+      .maybeSingle();
+
+    if (availabilityError) {
+      console.error('Failed to load optometrist availability:', availabilityError);
+      return;
+    }
+    if (!avail) {
+      setAvailableSlots([]);
+      return;
+    }
+
+    const { data: booked, error: bookedError } = await supabase
+      .from('appointments')
+      .select('appointment_time')
+      .eq('dentist_id', selectedDentist.id)
+      .eq('appointment_date', selectedDate)
+      .in('status', ['pending', 'approved']);
+
+    if (bookedError) {
+      console.error('Failed to load booked appointment slots:', bookedError);
+      return;
+    }
+
+    const slots = generateTimeSlots(avail.start_time, avail.end_time, selectedService.duration_minutes);
+    const bookedTimes = new Set((booked || []).map((booking) => booking.appointment_time.slice(0, 5)));
+    setAvailableSlots(slots.filter((slot) => !bookedTimes.has(slot)));
   }, [selectedDentist, selectedDate, selectedService]);
+
+  useEffect(() => {
+    void fetchAvailableSlots();
+  }, [fetchAvailableSlots]);
+
+  useBookingAvailabilityRealtime(selectedDentist?.id, fetchAvailableSlots);
 
   const handleBook = async () => {
     if (!profile || !selectedService || !selectedDentist || !selectedDate || !selectedTime) return;
