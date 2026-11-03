@@ -96,6 +96,54 @@ export default function Home() {
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce"><div className="w-px h-8 bg-white/40" /><div className="w-1.5 h-1.5 rounded-full bg-white/60" /></div>
       </section>
 
+      <section className="py-16 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Glasses Direct</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Watch Our Videos</h2>
+            <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+              Discover our eyewear, special offers, and the Glasses Direct experience.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            <img
+              src="/images/glasses-direct-promotion.png"
+              alt="Glasses Direct bifocal and multifocal lens offers"
+              className="w-full rounded-2xl shadow-lg"
+              loading="lazy"
+            />
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-2">Glasses Direct video 1</h3>
+              <video
+                className="w-full rounded-2xl shadow-lg bg-gray-900"
+                controls
+                playsInline
+                preload="metadata"
+                poster="/images/glasses-direct-promotion.png"
+                aria-label="Glasses Direct video 1"
+              >
+                <source src="/media/glasses-direct-video-1.mp4" type="video/mp4" />
+                Your browser does not support embedded videos.
+              </video>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-2">Glasses Direct video 2</h3>
+              <video
+                className="w-full rounded-2xl shadow-lg bg-gray-900"
+                controls
+                playsInline
+                preload="metadata"
+                poster="/images/glasses-direct-promotion.png"
+                aria-label="Glasses Direct video 2"
+              >
+                <source src="/media/glasses-direct-video-2.mp4" type="video/mp4" />
+                Your browser does not support embedded videos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-blue-700 text-white py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
@@ -112,46 +160,6 @@ export default function Home() {
           <div className="text-center mb-14"><span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">What We Offer</span><h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Complete Eye Care for Everyday Life</h2><p className="text-gray-500 mt-3 max-w-xl mx-auto">Professional advice, dependable eye care, and frames to suit your style, comfort, and prescription.</p></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">{SERVICES.map((service) => <ServiceCard key={service.id} service={service} />)}</div>
           <div className="text-center mt-10"><button onClick={() => navigate('/services')} className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-md shadow-blue-700/20">View All Services <ArrowRight size={18} /></button></div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Glasses Direct</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">See What We Offer</h2>
-            <p className="text-gray-500 mt-3 max-w-xl mx-auto">
-              Explore our eyewear offers and get to know Glasses Direct.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-            <img
-              src="/images/glasses-direct-promotion.png"
-              alt="Glasses Direct bifocal and multifocal lens offers"
-              className="w-full rounded-2xl shadow-lg"
-              loading="lazy"
-            />
-            <video
-              className="w-full rounded-2xl shadow-lg bg-gray-900"
-              controls
-              playsInline
-              preload="metadata"
-              aria-label="Glasses Direct video"
-            >
-              <source src="/media/glasses-direct-video-1.mp4" type="video/mp4" />
-              Your browser does not support embedded videos.
-            </video>
-            <video
-              className="w-full rounded-2xl shadow-lg bg-gray-900"
-              controls
-              playsInline
-              preload="metadata"
-              aria-label="Glasses Direct video"
-            >
-              <source src="/media/glasses-direct-video-2.mp4" type="video/mp4" />
-              Your browser does not support embedded videos.
-            </video>
-          </div>
         </div>
       </section>
 
