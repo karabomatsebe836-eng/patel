@@ -115,6 +115,46 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-20 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Glasses Direct</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">See What We Offer</h2>
+            <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+              Explore our eyewear offers and get to know Glasses Direct.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            <img
+              src="/images/glasses-direct-promotion.png"
+              alt="Glasses Direct bifocal and multifocal lens offers"
+              className="w-full rounded-2xl shadow-lg"
+              loading="lazy"
+            />
+            <video
+              className="w-full rounded-2xl shadow-lg bg-gray-900"
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="Glasses Direct video"
+            >
+              <source src="/media/glasses-direct-video-1.mp4" type="video/mp4" />
+              Your browser does not support embedded videos.
+            </video>
+            <video
+              className="w-full rounded-2xl shadow-lg bg-gray-900"
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="Glasses Direct video"
+            >
+              <source src="/media/glasses-direct-video-2.mp4" type="video/mp4" />
+              Your browser does not support embedded videos.
+            </video>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div><span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Why Choose Us</span><h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6">Thoughtful Eye Care<br />You Can Trust</h2><div className="space-y-5">
@@ -129,7 +169,7 @@ export default function Home() {
         </div></div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-teal-600 text-white"><div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><h2 className="text-3xl md:text-4xl font-bold mb-4">Your Clearer View Starts Here</h2><p className="text-blue-100 mb-8 max-w-xl mx-auto">Visit Glasses Direct at 97 Jones Street, Kimberley, or get in touch to arrange your next eye test.</p><div className="flex flex-wrap gap-4 justify-center"><button onClick={() => navigate('/register')} className="flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all hover:scale-105 shadow-lg">Book an Eye Test <ArrowRight size={18} /></button><a href={CLINIC.phoneHref} className="flex items-center gap-2 bg-white/10 border border-white/30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all"><Phone size={18} /> Call {CLINIC.phone}</a></div></div></section>
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-teal-600 text-white"><div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><h2 className="text-3xl md:text-4xl font-bold mb-4">Your Clearer View Starts Here</h2><p className="text-blue-100 mb-8 max-w-xl mx-auto">Visit Glasses Direct at {CLINIC.address}, or get in touch to arrange your next eye test.</p><div className="flex flex-wrap gap-4 justify-center"><button onClick={() => navigate('/register')} className="flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all hover:scale-105 shadow-lg">Book an Eye Test <ArrowRight size={18} /></button><a href={CLINIC.phoneHref} className="flex items-center gap-2 bg-white/10 border border-white/30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all"><Phone size={18} /> Call {CLINIC.phone}</a></div></div></section>
     </div>
   );
 }

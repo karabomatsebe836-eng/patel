@@ -3,7 +3,7 @@ import type { Service } from './types';
 export const CLINIC = {
   name: 'Glasses Direct',
   descriptor: 'Eye Care & Eyewear',
-  address: '97 Jones Street, Kimberley, South Africa, 8301',
+  address: 'Shop No. 5, Long Street, Old Woolworths Building, opposite Kim Park, Kimberley, South Africa',
   email: 'glassesdirect1000@gmail.com',
   emailHref: 'mailto:glassesdirect1000@gmail.com',
   phone: '+27 78 037 2285',
@@ -15,8 +15,8 @@ export const CLINIC = {
   ],
   whatsappHref: 'https://wa.me/27780372285?text=Hello%2C%20I%20would%20like%20to%20contact%20Glasses%20Direct.',
   facebookHref: 'https://www.facebook.com/mmpateloptometrist/',
-  mapHref: 'https://maps.google.com/maps?q=97+Jones+Street,+Kimberley,+South+Africa,+8301&output=embed',
-  mapSearch: '97 Jones Street, Kimberley, South Africa, 8301',
+  mapHref: 'https://maps.google.com/maps?q=Shop%20No.%205%2C%20Long%20Street%2C%20Old%20Woolworths%20Building%2C%20opposite%20Kim%20Park%2C%20Kimberley%2C%20South%20Africa&output=embed',
+  mapSearch: 'Shop No. 5, Long Street, Old Woolworths Building, opposite Kim Park, Kimberley, South Africa',
 };
 
 export const SERVICES: Service[] = [

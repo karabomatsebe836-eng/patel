@@ -25,9 +25,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-800 text-sm">Address</div>
-                    <div className="text-gray-500 text-sm mt-0.5 leading-relaxed">
-                      97 Jones Street<br />Kimberley, South Africa<br />8301
-                    </div>
+                    <div className="text-gray-500 text-sm mt-0.5 leading-relaxed">{CLINIC.address}</div>
                   </div>
                 </div>
 
