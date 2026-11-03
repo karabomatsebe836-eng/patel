@@ -11,6 +11,12 @@ import { CLINIC } from '../../lib/siteData';
 import { useAppointmentRealtime } from '../../hooks/useAppointmentRealtime';
 import type { Appointment, Service, Profile, Notification } from '../../lib/types';
 
+interface BookingOptometrist {
+  id: string;
+  full_name: string;
+  email: string;
+}
+
 const STATUS_STYLES: Record<string, { bg: string; text: string; icon: React.ReactNode }> = {
   pending:   { bg: 'bg-amber-50 border-amber-200',  text: 'text-amber-700',  icon: <AlertCircle size={14} /> },
   approved:  { bg: 'bg-green-50 border-green-200',  text: 'text-green-700',  icon: <CheckCircle size={14} /> },
@@ -46,11 +52,11 @@ export default function PatientDashboard() {
 
   // Book appointment state
   const [services, setServices] = useState<Service[]>([]);
-  const [dentists, setDentists] = useState<Profile[]>([]);
+  const [dentists, setDentists] = useState<BookingOptometrist[]>([]);
   const [dentistsLoading, setDentistsLoading] = useState(false);
   const [dentistsError, setDentistsError] = useState('');
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [selectedDentist, setSelectedDentist] = useState<Profile | null>(null);
+  const [selectedDentist, setSelectedDentist] = useState<BookingOptometrist | null>(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [notes, setNotes] = useState('');
@@ -115,27 +121,8 @@ export default function PatientDashboard() {
         return;
       }
 
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .in('id', dentistIds);
-
-      if (error) {
-        setDentists([]);
-        setDentistsError(error.message);
-        return;
-      }
-
-      if (!data?.length) {
-        setDentists([]);
-        setDentistsError(
-          'An active optometrist exists, but the database is not allowing patients to view the dentist profile. Apply the authenticated_select_dentist_profiles policy in Supabase.'
-        );
-        return;
-      }
-
-      setDentists(data.map((dentist) => ({
-        ...dentist,
+      setDentists(dentistIds.map((id) => ({
+        id,
         full_name: CLINIC.name,
         email: CLINIC.email,
       })));
