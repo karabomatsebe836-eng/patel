@@ -7,6 +7,7 @@ import {
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
 import { useRouter } from '../../contexts/RouterContext';
+import { CLINIC } from '../../lib/siteData';
 import { useAppointmentRealtime } from '../../hooks/useAppointmentRealtime';
 import type { Appointment, Service, Profile, Notification } from '../../lib/types';
 
@@ -133,7 +134,11 @@ export default function PatientDashboard() {
         return;
       }
 
-      setDentists(data);
+      setDentists(data.map((dentist) => ({
+        ...dentist,
+        full_name: CLINIC.name,
+        email: CLINIC.email,
+      })));
     } catch (error) {
       setDentists([]);
       setDentistsError(error instanceof Error ? error.message : 'An unexpected error occurred.');
