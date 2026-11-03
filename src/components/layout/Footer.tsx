@@ -18,7 +18,7 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <div className="font-bold text-white text-sm">Mohamed Patel Optometrist</div>
+                <div className="font-bold text-white text-sm">{CLINIC.name}</div>
                 <div className="text-xs text-teal-400">Helping Kimberley see clearly</div>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function Footer() {
 
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Mohamed Patel Optometrist. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {CLINIC.name}. All rights reserved.</p>
           <p>{CLINIC.address} &nbsp;|&nbsp; {CLINIC.phone}</p>
         </div>
       </div>

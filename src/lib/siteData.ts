@@ -1,14 +1,14 @@
 import type { Service } from './types';
 
 export const CLINIC = {
-  name: 'Mohamed Patel',
-  descriptor: 'Optometrist',
+  name: 'Glasses Direct',
+  descriptor: 'Eye Care & Eyewear',
   address: '97 Jones Street, Kimberley, South Africa, 8301',
   phone: '061 694 5710',
   phoneHref: 'tel:0616945710',
   landline: '053 831 1430',
   landlineHref: 'tel:0538311430',
-  whatsappHref: 'https://wa.me/27616945710?text=Hello%2C%20I%20would%20like%20to%20book%20an%20eye%20test%20at%20Mohamed%20Patel%20Optometrist.',
+  whatsappHref: 'https://wa.me/27616945710?text=Hello%2C%20I%20would%20like%20to%20book%20an%20eye%20test%20with%20Glasses%20Direct.',
   facebookHref: 'https://www.facebook.com/mmpateloptometrist/',
   mapHref: 'https://maps.google.com/maps?q=97+Jones+Street,+Kimberley,+South+Africa,+8301&output=embed',
   mapSearch: '97 Jones Street, Kimberley, South Africa, 8301',

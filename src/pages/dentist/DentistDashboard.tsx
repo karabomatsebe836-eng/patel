@@ -219,7 +219,7 @@ export default function DentistDashboard() {
                   <path d="M12 2C8 2 6 5 6 8c0 2 .5 3.5 1 5 .5 1.5 1 3 1 5 0 1 .5 2 2 2h4c1.5 0 2-1 2-2 0-2 .5-3.5 1-5 .5-1.5 1-3 1-5 0-3-2-6-6-6z"/>
                 </svg>
               </div>
-              <span className="font-bold text-gray-900 text-sm">Mohamed Patel Optometrist</span>
+              <span className="font-bold text-gray-900 text-sm">Glasses Direct</span>
             </button>
           </div>
           <div className="flex-1 p-4 space-y-1">
@@ -264,7 +264,7 @@ export default function DentistDashboard() {
           {/* Mobile top nav */}
           <div className="lg:hidden bg-white border-b border-gray-100 sticky top-0 z-30">
             <div className="flex items-center justify-between px-4 py-3">
-              <span className="font-bold text-gray-900">Optometrist Portal</span>
+              <span className="font-bold text-gray-900">Glasses Direct Portal</span>
               <button onClick={async () => { await signOut(); navigate('/'); }} className="p-2 text-red-500">
                 <LogOut size={18} />
               </button>

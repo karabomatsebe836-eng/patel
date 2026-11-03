@@ -218,7 +218,7 @@ export default function AdminDashboard() {
                   <path d="M12 2C8 2 6 5 6 8c0 2 .5 3.5 1 5 .5 1.5 1 3 1 5 0 1 .5 2 2 2h4c1.5 0 2-1 2-2 0-2 .5-3.5 1-5 .5-1.5 1-3 1-5 0-3-2-6-6-6z"/>
                 </svg>
               </div>
-              <span className="font-bold text-gray-900 text-sm">Mohamed Patel Optometrist</span>
+              <span className="font-bold text-gray-900 text-sm">Glasses Direct</span>
             </button>
           </div>
           <div className="px-3 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-2 ml-1">Admin Panel</div>
@@ -276,7 +276,7 @@ export default function AdminDashboard() {
               <div>
                 <div className="mb-6">
                   <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-                  <p className="text-gray-500 text-sm mt-1">Mohamed Patel Optometrist — Practice Management</p>
+                  <p className="text-gray-500 text-sm mt-1">Glasses Direct — Practice Management</p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/image.png')" }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/glasses-direct-banner.png')" }} />
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/75 to-teal-900/40" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="max-w-2xl">
@@ -70,7 +70,7 @@ export default function Home() {
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               See Life More Clearly
-              <span className="block text-teal-400">with Mohamed Patel</span>
+              <span className="block text-teal-400">with Glasses Direct</span>
             </h1>
             <p className="text-lg text-blue-100 leading-relaxed mb-8 max-w-xl">
               Personalised optometry and quality eyewear in the heart of Kimberley. From comprehensive eye tests to prescription glasses and sunglasses, your vision is in caring hands.
@@ -125,11 +125,11 @@ export default function Home() {
               { icon: <CheckCircle size={20} />, title: 'Medical aid friendly', desc: `We work with ${MEDICAL_AIDS.slice(0, 4).join(', ')} and other contracted medical aids.` },
             ].map((item) => <div key={item.title} className="flex items-start gap-4"><div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">{item.icon}</div><div><div className="font-semibold text-gray-900 text-sm">{item.title}</div><div className="text-gray-500 text-sm mt-1 leading-relaxed">{item.desc}</div></div></div>)}
           </div></div>
-          <div className="relative"><div className="rounded-2xl overflow-hidden shadow-xl"><img src="/images/image copy 2.png" alt="Eyewear display at Mohamed Patel Optometrist" className="w-full h-80 object-cover" /></div><div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 max-w-[190px]"><div className="flex gap-0.5 mb-2">{[1,2,3,4,5].map((i) => <Star key={i} size={14} className="text-amber-400 fill-amber-400" />)}</div><p className="text-xs text-gray-600 leading-relaxed italic">“Professional care and a great selection of frames.”</p><p className="text-xs font-semibold text-gray-800 mt-2">— A Kimberley patient</p></div><div className="absolute -top-4 -right-4 bg-teal-500 text-white rounded-2xl p-4 text-center shadow-lg"><div className="text-2xl font-bold">UV</div><div className="text-xs text-teal-100">Eye protection</div></div></div>
+          <div className="relative"><div className="rounded-2xl overflow-hidden shadow-xl"><img src="/images/image copy 2.png" alt="Eyewear display at Glasses Direct" className="w-full h-80 object-cover" /></div><div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 max-w-[190px]"><div className="flex gap-0.5 mb-2">{[1,2,3,4,5].map((i) => <Star key={i} size={14} className="text-amber-400 fill-amber-400" />)}</div><p className="text-xs text-gray-600 leading-relaxed italic">“Professional care and a great selection of frames.”</p><p className="text-xs font-semibold text-gray-800 mt-2">— A Kimberley patient</p></div><div className="absolute -top-4 -right-4 bg-teal-500 text-white rounded-2xl p-4 text-center shadow-lg"><div className="text-2xl font-bold">UV</div><div className="text-xs text-teal-100">Eye protection</div></div></div>
         </div></div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-teal-600 text-white"><div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><h2 className="text-3xl md:text-4xl font-bold mb-4">Your Clearer View Starts Here</h2><p className="text-blue-100 mb-8 max-w-xl mx-auto">Visit Mohamed Patel Optometrist at 97 Jones Street, Kimberley, or get in touch to arrange your next eye test.</p><div className="flex flex-wrap gap-4 justify-center"><button onClick={() => navigate('/register')} className="flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all hover:scale-105 shadow-lg">Book an Eye Test <ArrowRight size={18} /></button><a href={CLINIC.phoneHref} className="flex items-center gap-2 bg-white/10 border border-white/30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all"><Phone size={18} /> Call {CLINIC.phone}</a></div></div></section>
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-teal-600 text-white"><div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><h2 className="text-3xl md:text-4xl font-bold mb-4">Your Clearer View Starts Here</h2><p className="text-blue-100 mb-8 max-w-xl mx-auto">Visit Glasses Direct at 97 Jones Street, Kimberley, or get in touch to arrange your next eye test.</p><div className="flex flex-wrap gap-4 justify-center"><button onClick={() => navigate('/register')} className="flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all hover:scale-105 shadow-lg">Book an Eye Test <ArrowRight size={18} /></button><a href={CLINIC.phoneHref} className="flex items-center gap-2 bg-white/10 border border-white/30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all"><Phone size={18} /> Call {CLINIC.phone}</a></div></div></section>
     </div>
   );
 }

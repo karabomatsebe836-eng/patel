@@ -53,8 +53,8 @@ export default function Header() {
               </svg>
             </div>
             <div className="text-left">
-              <div className={`font-bold text-sm leading-tight ${logoTextColor}`}>Mohamed Patel</div>
-              <div className={`text-xs leading-tight ${logoSubColor}`}>Optometrist</div>
+              <div className={`font-bold text-sm leading-tight ${logoTextColor}`}>{CLINIC.name}</div>
+              <div className={`text-xs leading-tight ${logoSubColor}`}>{CLINIC.descriptor}</div>
             </div>
           </button>
 

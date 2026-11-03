@@ -61,7 +61,7 @@ export default function Login() {
                 <path d="M12 2C8 2 6 5 6 8c0 2 .5 3.5 1 5 .5 1.5 1 3 1 5 0 1 .5 2 2 2h4c1.5 0 2-1 2-2 0-2 .5-3.5 1-5 .5-1.5 1-3 1-5 0-3-2-6-6-6z"/>
               </svg>
             </div>
-            <span className="font-bold text-gray-900 text-lg">{CLINIC.name} Optometrist</span>
+            <span className="font-bold text-gray-900 text-lg">{CLINIC.name}</span>
           </button>
           <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
           <p className="text-gray-500 mt-2 text-sm">Sign in to access your portal</p>
