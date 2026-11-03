@@ -1,4 +1,4 @@
-import { Phone, MapPin, Mail, Clock, Facebook } from 'lucide-react';
+import { Phone, MapPin, Mail, Clock, Facebook, MessageCircle } from 'lucide-react';
 import { useRouter } from '../../contexts/RouterContext';
 import { CLINIC } from '../../lib/siteData';
 
@@ -76,13 +76,21 @@ export default function Footer() {
                 <MapPin size={16} className="text-teal-400 mt-0.5 shrink-0" />
                 <span className="text-gray-400">{CLINIC.address}</span>
               </li>
+              <li className="flex items-start gap-3">
+                <Phone size={16} className="text-teal-400 shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  {CLINIC.phones.map((phone) => (
+                    <a key={phone.number} href={phone.phoneHref} className="block text-gray-400 hover:text-teal-400 transition-colors">{phone.number}</a>
+                  ))}
+                </div>
+              </li>
               <li className="flex items-center gap-3">
-                <Phone size={16} className="text-teal-400 shrink-0" />
-                <a href={CLINIC.phoneHref} className="text-gray-400 hover:text-teal-400 transition-colors">{CLINIC.phone}</a>
+                <MessageCircle size={16} className="text-teal-400 shrink-0" />
+                <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition-colors">WhatsApp Glasses Direct</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-teal-400 shrink-0" />
-                <a href={CLINIC.facebookHref} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition-colors">Facebook page</a>
+                <a href={CLINIC.emailHref} className="text-gray-400 hover:text-teal-400 transition-colors">{CLINIC.email}</a>
               </li>
               <li className="flex items-start gap-3">
                 <Clock size={16} className="text-teal-400 mt-0.5 shrink-0" />
@@ -100,7 +108,7 @@ export default function Footer() {
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-500">
           <p>&copy; {new Date().getFullYear()} {CLINIC.name}. All rights reserved.</p>
-          <p>{CLINIC.address} &nbsp;|&nbsp; {CLINIC.phone}</p>
+          <p>{CLINIC.address}</p>
         </div>
       </div>
     </footer>
